@@ -1,7 +1,7 @@
-for (let i = 0; i < 10; i++) {
+for (let baris = 0; baris < 10; baris++) {
     let str = ''
-    for (let j = 0; j < 11; j++) {
-        str += j <= i ? '*' : '+'
+    for (let kolom = 0; kolom < 10; kolom++) {
+        str += kolom <= baris ? '*' : '+'
     }
     console.log(str)
 }
