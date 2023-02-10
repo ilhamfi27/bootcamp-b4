@@ -1,28 +1,12 @@
-const productMobil = [
-  {
-    merk: 'honda',
-    kapasitas: 2500,
-    qty: 2,
-  },
-  {
-    merk: 'suzuki',
-    kapasitas: 2500,
-    qty: 20,
-  },
-  {
-    merk: 'bmw',
-    kapasitas: 2500,
-    qty: 21,
-  },
-];
+const dbProduct = require('./../database/products');
+
 function fetch(req, res) {
-  res.send(productMobil);
+  const data = dbProduct.fetch();
+  res.send(data);
 }
 function get(req, res) {
   const productName = req.params.name; // ambil parameter :name
-
-  // filter product nya
-  const selectedProduct = productMobil.find((d) => d.merk == productName);
+  const selectedProduct = dbProduct.getOne(productName);
   let data = {},
     responseStatus = 200;
   if (selectedProduct) {
@@ -36,12 +20,25 @@ function get(req, res) {
 }
 function create(req, res) {
   const body = req.body;
-  console.log(body);
-  res.send({ message: 'hello from post product' });
+  const result = dbProduct.create(body);
+  res.send(result);
+}
+function update(req, res) {
+  const productName = req.params.name;
+  const body = req.body;
+  const result = dbProduct.update(body, productName);
+  res.send(result);
+}
+function destroy(req, res) {
+  const productName = req.params.name;
+  dbProduct.destroy(productName);
+  res.sendStatus(204);
 }
 
 module.exports = {
   fetch,
   get,
   create,
+  update,
+  destroy,
 };

@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 
 const showtime = require('./middleware/showtime');
 const greetings = require('./middleware/greetings');
-const idValidation = require('./middleware/idValidation');
 const errorHandling = require('./middleware/errorHandling');
 const authorization = require('./middleware/authorization');
 
@@ -13,10 +12,9 @@ const app = express();
  * middleware
  */
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(showtime);
 app.use(greetings);
-app.use(authorization);
-app.use('/products/:name/detail/:id', idValidation);
 
 /**
  * routing
