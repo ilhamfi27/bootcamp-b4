@@ -1,10 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 const showtime = require('./middleware/showtime');
 const greetings = require('./middleware/greetings');
 const errorHandling = require('./middleware/errorHandling');
-const authorization = require('./middleware/authorization');
 
 const app = express();
 
@@ -12,9 +13,21 @@ const app = express();
  * middleware
  */
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(showtime);
-app.use(greetings);
+app.use(cookieParser());
+app.use(
+  session({
+    secret: 'abcdefghijklmnopqrstuvwxyz',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// routing untuk mengambil gambar
+app.use('/images', express.static('public/images', {
+    maxAge: 1000 * 60 * 2 // 2 minutes
+}));
 
 /**
  * routing

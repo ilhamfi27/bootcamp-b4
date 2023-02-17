@@ -1,4 +1,6 @@
 const dbProduct = require('./../database/products');
+const path = require('path');
+const fs = require('fs');
 
 function fetch(req, res) {
   const data = dbProduct.fetch();
@@ -34,6 +36,20 @@ function destroy(req, res) {
   dbProduct.destroy(productName);
   res.sendStatus(204);
 }
+function upload(req, res) {
+  const merk = req.body.merk;
+  const ext = path.extname(req.file.originalname);
+  const uploadedPath = req.file.path;
+  // ubah nama filenya menjadi berdasarkan merk
+  fs.rename(
+    uploadedPath,
+    path.resolve(__dirname, '../public/images/' + merk + '.' + ext),
+    (err) => {
+      console.log(err);
+    }
+  );
+  res.send({ message: req.file });
+}
 
 module.exports = {
   fetch,
@@ -41,4 +57,5 @@ module.exports = {
   create,
   update,
   destroy,
+  upload,
 };
