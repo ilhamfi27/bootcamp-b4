@@ -20,8 +20,6 @@ router.get('/set-header', (req, res) => {
 });
 router.get('/get-custom-header', (req, res) => {
   const apiKey = req.header('x-api-key');
-  const billingStatus = req.header('x-billing');
-  const noXBillingStatus = req.header('billing');
   if (!apiKey) {
     res.status(403).send({ message: 'no api key' });
   } else {
@@ -33,6 +31,6 @@ router.get('/access-data', autorizeCtrl.authorizeAPIKey);
 
 router.get('/no-cache', cachingCtrl.noCache);
 router.get('/cache-2-minutes', cachingCtrl.twoMinutesCache);
-router.get('/cache-content', cache(1000 * 60 * 1), cachingCtrl.cacheContent);
+router.get('/cache-content', cachingCtrl.cacheContent);
 
 module.exports = router;

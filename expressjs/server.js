@@ -2,9 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const cors = require('cors')
 
-const showtime = require('./middleware/showtime');
-const greetings = require('./middleware/greetings');
 const errorHandling = require('./middleware/errorHandling');
 
 const app = express();
@@ -12,6 +11,9 @@ const app = express();
 /**
  * middleware
  */
+app.use(cors({
+    origin: 'http://localhost:3000'
+}))
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(
