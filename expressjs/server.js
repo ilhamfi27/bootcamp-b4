@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const cors = require('cors')
+const cors = require('cors');
 
 const errorHandling = require('./middleware/errorHandling');
 
@@ -11,9 +11,12 @@ const app = express();
 /**
  * middleware
  */
-app.use(cors({
-    origin: 'http://localhost:3000'
-}))
+// app.use(
+//   cors({
+//     origin: '*',
+//     methods: ['GET']
+//   })
+// );
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(
@@ -27,9 +30,12 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // routing untuk mengambil gambar
-app.use('/images', express.static('public/images', {
-    maxAge: 1000 * 60 * 2 // 2 minutes
-}));
+app.use(
+  '/images',
+  express.static('public/images', {
+    maxAge: 1000 * 60 * 2, // 2 minutes
+  })
+);
 
 /**
  * routing

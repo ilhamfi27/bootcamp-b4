@@ -32,5 +32,6 @@ router.get('/access-data', autorizeCtrl.authorizeAPIKey);
 router.get('/no-cache', cachingCtrl.noCache);
 router.get('/cache-2-minutes', cachingCtrl.twoMinutesCache);
 router.get('/cache-content', cachingCtrl.cacheContent);
+router.post('/post-content', cachingCtrl.postContent);
 
 module.exports = router;

@@ -29,10 +29,21 @@ async function cacheContent(req, res) {
   }
 }
 
+async function postContent(req, res) {
+  try {
+    console.log(req.body);
+    res.status(200).send()
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+}
+
 module.exports = {
   noCache,
   twoMinutesCache,
   cacheContent,
+  postContent,
 };
 
 /**
