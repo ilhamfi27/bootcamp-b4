@@ -42,9 +42,11 @@ app.use(
  */
 const routesApiV1 = require('./routes/v1routes');
 const routesApiV2 = require('./routes/v2routes');
+const routesApiV3 = require('./routes/v3routes');
 
 app.use('/api/v1', routesApiV1);
 app.use('/api/v2', routesApiV2);
+app.use('/api/v3', routesApiV3);
 app
   .route('*')
   .get((req, res) => {
