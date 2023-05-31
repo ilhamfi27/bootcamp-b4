@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   title: Sample Produk
   description: List API Untuk Produk
@@ -9,6 +9,17 @@ basePath: /
 schemes:
   - http
   - https
+  
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: |
+      auhtentication bearer header
+
+security:
+  - Bearer: []
 
 paths:
   /product:
@@ -18,7 +29,7 @@ paths:
         API untuk mengambil semua produk tanpa kecuali.
         Untuk memberikan informasi tentang data produk
       tags:
-        - Produk
+      - Produk
       parameters:
         - in: query
           name: search
@@ -38,7 +49,7 @@ paths:
       summary: API Simpan produk
       description: API untuk menyimpan produk sesukamu
       tags:
-        - Produk
+      - Produk
       parameters:
         - name: produk
           in: body
@@ -67,7 +78,7 @@ paths:
         API untuk mengambil satu produk
         Untuk memberikan informasi tentang data produk
       tags:
-        - Produk
+      - Produk
       parameters:
         - in: path
           name: id
@@ -84,7 +95,7 @@ paths:
         API untuk mengupdate satu produk
         Untuk mengubah data tentang produk
       tags:
-        - Produk
+      - Produk
       parameters:
         - in: path
           name: id
@@ -116,7 +127,7 @@ paths:
         API untuk menghapus satu produk
         Untuk menghapus informasi tentang data produk
       tags:
-        - Produk
+      - Produk
       parameters:
         - in: path
           name: id
@@ -134,7 +145,7 @@ paths:
         API untuk mengambil semua produk tanpa kecuali.
         Untuk memberikan informasi tentang data produk
       tags:
-        - Catalog
+      - Catalog
       parameters:
         - in: query
           name: search
@@ -154,7 +165,7 @@ paths:
       summary: API Simpan produk
       description: API untuk menyimpan produk sesukamu
       tags:
-        - Catalog
+      - Catalog
       parameters:
         - name: produk
           in: body
@@ -183,7 +194,7 @@ paths:
         API untuk mengambil satu produk
         Untuk memberikan informasi tentang data produk
       tags:
-        - Catalog
+      - Catalog
       parameters:
         - in: path
           name: id
@@ -200,7 +211,7 @@ paths:
         API untuk mengupdate satu produk
         Untuk mengubah data tentang produk
       tags:
-        - Catalog
+      - Catalog
       parameters:
         - in: path
           name: id
@@ -232,7 +243,7 @@ paths:
         API untuk menghapus satu produk
         Untuk menghapus informasi tentang data produk
       tags:
-        - Catalog
+      - Catalog
       parameters:
         - in: path
           name: id
@@ -243,3 +254,4 @@ paths:
       responses:
         200:
           description: OK
+          
