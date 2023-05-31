@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const swaggerUI = require('swagger-ui-express');
 const cors = require('cors');
+const swagger = require('./docs/swagger.json');
 
 const errorHandling = require('./middleware/errorHandling');
 
@@ -47,6 +49,7 @@ const routesApiV3 = require('./routes/v3routes');
 app.use('/api/v1', routesApiV1);
 app.use('/api/v2', routesApiV2);
 app.use('/api/v3', routesApiV3);
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swagger));
 app
   .route('*')
   .get((req, res) => {
